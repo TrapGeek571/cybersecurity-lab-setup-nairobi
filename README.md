@@ -1,58 +1,123 @@
-# Cybersecurity Lab Setup - My First Homelab
+# 🛡️ Cybersecurity Lab Setup — Nairobi
 
-**Author:** Alvin Supeeti Karkures - Cybersecurity Student, Nairobi
-**Host OS:** Windows 10 Home on Fujitsu Lifebook U938, i5 7th Gen, 8GB RAM, 256GB SSD
-**Virtualization:** Oracle VirtualBox 7.x - NAT Network
-**Lab OS:** Kali Linux 2026.x
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&duration=2800&pause=900&color=00D9FF&center=true&vCenter=true&width=720&lines=Building+an+isolated+cybersecurity+homelab;Learning+networking+through+real+troubleshooting;Kali+Linux+%2B+VirtualBox+%2B+curiosity" alt="Animated introduction" />
+</p>
 
-## Lab Goal
-Set up an isolated cybersecurity lab with static IP 10.0.0.2/24 as instructed, with internet connectivity for tools.
+<p align="center">
+  <img src="https://img.shields.io/badge/Focus-Cybersecurity-00d9ff?style=for-the-badge&logo=kalilinux&logoColor=white" alt="Cybersecurity" />
+  <img src="https://img.shields.io/badge/Location-Nairobi-ff7a18?style=for-the-badge&logo=googlemaps&logoColor=white" alt="Nairobi" />
+  <img src="https://img.shields.io/badge/Status-Lab%20Online-22c55e?style=for-the-badge&logo=statuspage&logoColor=white" alt="Lab online" />
+</p>
 
-## Lab Architecture
-- VirtualBox NAT Network: 10.0.0.0/24 (Changed from default 10.0.2.0/24)
-- Gateway: 10.0.0.1
-- Kali IP: 10.0.0.2/24
-- DNS: 8.8.8.8
+> **A hands-on cybersecurity homelab built to understand networking fundamentals, not just follow commands.**
 
-## Setup Steps I Did
-1. Created NAT Network in VirtualBox > Tools > Network Manager
-2. Initially it showed IPv4 Prefix 10.0.2.0/24 - noticed mismatch
-3. Changed it to 10.0.0.0/24 and Applied
-4. Configured Kali static IP:
-   - sudo nmcli con del ethernet
-   - sudo nmcli con add type ethernet con-name ethernet ifname eth0 ipv4.addresses 10.0.0.2/24 ipv4.gateway 10.0.0.1 ipv4.dns 8.8.8.8 ipv4.method manual
-   - sudo nmcli con mod ethernet ipv4.dad-timeout 0
-   - sudo nmcli con up ethernet
+## ⚡ Lab Snapshot
 
+| Component | Configuration |
+| --- | --- |
+| **Author** | Alvin Supeeti Karkures — Cybersecurity Student, Nairobi |
+| **Host OS** | Windows 10 Home on Fujitsu Lifebook U938 |
+| **Hardware** | Intel Core i5 7th Gen · 8 GB RAM · 256 GB SSD |
+| **Virtualization** | Oracle VirtualBox 7.x · NAT Network |
+| **Lab OS** | Kali Linux 2026.x |
+| **Network** | `10.0.0.0/24` · Kali: `10.0.0.2` · Gateway: `10.0.0.1` |
+| **DNS** | `8.8.8.8` |
 
-## Problems I Faced & How I Fixed Them (REAL LEARNING)
+## 🎯 Lab Goal
 
-**Problem 1: Destination Host Unreachable**
-- When I set 10.0.0.2 while VirtualBox was still on 10.0.2.0/24, ping to 10.0.0.1 failed.
-- Reason: Different networks - like trying to find a house on a different street.
-- Fix: Changed VirtualBox IPv4 Prefix to 10.0.0.0/24
+Set up an isolated cybersecurity lab with static IP `10.0.0.2/24`, while retaining internet connectivity for tools and updates.
 
-**Problem 2: 10.0.0.2 Reserved Conflict**
-- 10.0.0.2 is often the NAT gateway/DHCP itself in VirtualBox.
-- Needed `ipv4.dad-timeout 0` to bypass Duplicate Address Detection.
+## 🌐 Lab Architecture
 
-**Problem 3: Copy/Paste not working**
-- Ctrl+C/V doesn't work in Kali terminal. Learned to use Ctrl+Shift+C / Ctrl+Shift+V
-- Enabled Devices > Shared Clipboard > Bidirectional and Drag & Drop
+```mermaid
+flowchart LR
+    A[🌍 Internet] --> B[🖥️ Windows 10 Host]
+    B --> C[🧱 VirtualBox NAT Network\n10.0.0.0/24]
+    C --> D[🐉 Kali Linux VM\n10.0.0.2/24]
+    C --> E[🚪 Gateway\n10.0.0.1]
+    D --> F[🔎 Security Tools]
+```
 
-**Problem 4: GUI says Disconnected but internet works**
-- Top right icon showed "Disconnected" even though `ping 8.8.8.8` worked.
-- Learned to trust terminal output (`ip a` and `ping`) over GUI.
+## 🚀 Setup Steps
 
-## Verification (My Screenshots)
-- Screenshots folder
-1. `Screenshot_2026-10-30_00_57_01.png` - shows inet 10.0.0.2/24
-2. `Screenshot_2026-10-30_00_57_02.png` - ping 10.0.0.1 replies
-3. `Screenshot_2026-10-30_00_57_03.png` - ping 8.8.8.8 and google.com
-4. `Screenshot (49).png` - showing my Kali Linux home page
+<details open>
+<summary><strong>1. Create the VirtualBox network</strong></summary>
 
-## Lessons Learned
-Building a lab is not just installing - it's debugging networking fundamentals. Checking VirtualBox NAT settings before configuring Kali saved me hours.
+1. Open **VirtualBox → Tools → Network Manager**.
+2. Create a NAT Network using `10.0.0.0/24`.
+3. Apply the configuration.
 
-## Reference Structure
-Inspired by instructor samples but all IPs, specs and troubleshooting are my own lab on my own laptop.
+</details>
+
+<details>
+<summary><strong>2. Configure Kali Linux</strong></summary>
+
+```bash
+sudo nmcli con del ethernet
+sudo nmcli con add type ethernet con-name ethernet ifname eth0 \
+  ipv4.addresses 10.0.0.2/24 \
+  ipv4.gateway 10.0.0.1 \
+  ipv4.dns 8.8.8.8 \
+  ipv4.method manual
+sudo nmcli con mod ethernet ipv4.dad-timeout 0
+sudo nmcli con up ethernet
+```
+
+</details>
+
+## 🧩 Problems Faced & Fixes
+
+<details>
+<summary><strong>🔴 Problem 1 — Destination Host Unreachable</strong></summary>
+
+**Cause:** Kali was configured for `10.0.0.2`, while VirtualBox was still using `10.0.2.0/24`.
+
+**Fix:** Changed the VirtualBox IPv4 prefix to `10.0.0.0/24`.
+
+</details>
+
+<details>
+<summary><strong>🟠 Problem 2 — 10.0.0.2 Reserved Conflict</strong></summary>
+
+`10.0.0.2` can be reserved by VirtualBox NAT/DHCP. The setting below bypasses Duplicate Address Detection:
+
+```bash
+sudo nmcli con mod ethernet ipv4.dad-timeout 0
+```
+
+</details>
+
+<details>
+<summary><strong>🟡 Problem 3 — Copy/Paste Not Working</strong></summary>
+
+- Use **Ctrl+Shift+C** and **Ctrl+Shift+V** in the Kali terminal.
+- Enable **Devices → Shared Clipboard → Bidirectional**.
+- Enable **Devices → Drag and Drop → Bidirectional**.
+
+</details>
+
+<details>
+<summary><strong>🔵 Problem 4 — GUI Disconnected, Internet Working</strong></summary>
+
+The network icon showed **Disconnected**, even though `ping 8.8.8.8` worked. The lesson: trust terminal evidence such as `ip a` and `ping` over a misleading GUI status indicator.
+
+</details>
+
+## ✅ Verification Evidence
+
+- `Screenshot_2026-10-30_00_57_01.png` — confirms `inet 10.0.0.2/24`
+- `Screenshot_2026-10-30_00_57_02.png` — successful ping to `10.0.0.1`
+- `Screenshot_2026-10-30_00_57_03.png` — successful ping to `8.8.8.8` and `google.com`
+- `Screenshot (49).png` — Kali Linux home page
+
+## 💡 Lessons Learned
+
+Building a lab is not just installing software — it is debugging networking fundamentals. Checking VirtualBox NAT settings before configuring Kali saved hours of troubleshooting.
+
+<div align="center">
+  <br />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:00d9ff,50:7c3aed,100:ff7a18&height=110&section=footer" alt="Colorful footer" />
+</div>
+
+<sub>Inspired by instructor samples; all IPs, specifications, and troubleshooting notes are from my own lab and laptop.</sub>
