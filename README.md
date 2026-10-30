@@ -46,10 +46,10 @@ Set up an isolated cybersecurity lab with static IP 10.0.0.2/24 as instructed, w
 
 ## Verification (My Screenshots)
 - Screenshots folder
-1. `ip_a_10.0.0.2.png` - shows inet 10.0.0.2/24
-2. `ping_gateway.png` - ping 10.0.0.1 replies
-3. `ping_internet.png` - ping 8.8.8.8 and google.com
-4. `virtualbox_prefix_fix.png` - showing 10.0.0.0/24
+1. `Screenshot_2026-10-30_00_57_01.png` - shows inet 10.0.0.2/24
+2. `Screenshot_2026-10-30_00_57_02.png` - ping 10.0.0.1 replies
+3. `Screenshot_2026-10-30_00_57_03.png` - ping 8.8.8.8 and google.com
+4. `Screenshot (49).png` - showing my Kali Linux home page
 
 ## Lessons Learned
 Building a lab is not just installing - it's debugging networking fundamentals. Checking VirtualBox NAT settings before configuring Kali saved me hours.
