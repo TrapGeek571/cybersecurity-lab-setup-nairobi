@@ -106,10 +106,21 @@ The network icon showed **Disconnected**, even though `ping 8.8.8.8` worked. The
 
 ## ✅ Verification Evidence
 
-- `Screenshot_2026-10-30_00_57_01.png` — confirms `inet 10.0.0.2/24`
-- `Screenshot_2026-10-30_00_57_02.png` — successful ping to `10.0.0.1`
-- `Screenshot_2026-10-30_00_57_03.png` — successful ping to `8.8.8.8` and `google.com`
-- `Screenshot (49).png` — Kali Linux home page
+### Network interface
+
+![Kali Linux network interface showing inet 10.0.0.2/24](screenshots/Screenshot_2026-10-30_00_57_01.png)
+
+### Gateway connectivity
+
+![Successful ping to 10.0.0.1](screenshots/Screenshot_2026-10-30_00_57_02.png)
+
+### Internet and DNS connectivity
+
+![Successful ping to 8.8.8.8 and google.com](screenshots/Screenshot_2026-10-30_00_57_03.png)
+
+### Kali Linux desktop
+
+![Kali Linux home page](screenshots/Screenshot%20(49).png)
 
 ## 💡 Lessons Learned
 
